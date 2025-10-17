@@ -17,13 +17,11 @@ export default function Home() {
                         botId: process.env.NEXT_PUBLIC_COZE_BOT_ID,
                         isIframe: false,
                     },
-
                     auth: {
                         type: 'token',
                         token: process.env.NEXT_PUBLIC_COZE_TOKEN,
                         onRefreshToken: () => process.env.NEXT_PUBLIC_COZE_TOKEN
                     },
-
                     ui: {
                         base: {
                             icon: '/favicon.ico',
@@ -31,36 +29,25 @@ export default function Home() {
                             lang: 'en',
                             zIndex: 9999,
                         },
-
                         asstBtn: {
                             isNeed: false,
                         },
-
                         header: {
                             isShow: true,
                             isNeedClose: false,
                         },
-
                         chatBot: {
                             title: 'Tìm Việc Việt Nam',
                             uploadable: true,
                             isNeedAddNewConversation: true,
-                            el: chatContainerRef.current, // Mount vào container
-                            onShow: () => {
-                                console.log('Chat opened');
-                            },
-                            onHide: () => {
-                                console.log('Chat closed');
-                            },
+                            el: chatContainerRef.current,
                         },
-
                         footer: {
                             isShow: false,
                         },
                     },
                 });
 
-                // Auto show
                 setTimeout(() => {
                     cozeWebSDK.showChatBot();
                 }, 100);
@@ -68,24 +55,17 @@ export default function Home() {
         };
 
         document.body.appendChild(script);
-
-        return () => {
-            if (document.body.contains(script)) {
-                document.body.removeChild(script);
-            }
-        };
     }, []);
 
     return (
         <div
-            className="min-h-screen flex items-center justify-center"
+            className="fixed inset-0 flex items-center justify-center md:p-4"
             style={{ backgroundColor: '#d1fa94' }}
         >
             <div
                 ref={chatContainerRef}
-                className="w-full max-w-md h-[80vh] rounded-2xl shadow-2xl overflow-hidden"
+                className="w-full h-full md:max-w-md md:h-[80vh] md:rounded-2xl md:shadow-2xl bg-white overflow-hidden"
             />
         </div>
-
     );
 }
