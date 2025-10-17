@@ -27,7 +27,7 @@ export default function Home() {
                         // Base settings - QUAN TRỌNG cho full screen
                         base: {
                             layout: 'mobile', // 'mobile' = FULL SCREEN
-                            lang: 'en', // hoặc 'zh-CN'
+                            lang: 'vn', // hoặc 'zh-CN'
                             zIndex: 9999,
                         },
 
