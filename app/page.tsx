@@ -37,15 +37,14 @@ export default function Home() {
                         },
 
                         header: {
-                            isShow: true, // true = hiện title bar, false = ẩn
-                            isNeedClose: false, // Hiện nút close
+                            isShow: false,
+                            isNeedClose: false,
                         },
 
                         chatBot: {
                             title: 'AI Support Assistant', // Title
-                            uploadable: true, // Cho phép upload file
-                            isNeedAddNewConversation: true, // Nút tạo conversation mới
-                            // Callbacks
+                            uploadable: true,
+                            isNeedAddNewConversation: true,
                             onShow: () => {
                                 console.log('Chat opened');
                             },
@@ -53,10 +52,8 @@ export default function Home() {
                                 console.log('Chat closed');
                             },
                         },
-
-                        // Footer text (optional)
                         footer: {
-                            isShow: false, // Ẩn "Powered by Coze"
+                            isShow: false,
                         },
                     },
                 });
