@@ -1,15 +1,16 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function Home() {
+    const chatContainerRef = useRef<HTMLDivElement>(null);
+
     useEffect(() => {
         const script = document.createElement('script');
-        // Dùng version mới nhất từ documentation
         script.src = 'https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/oversea/index.js';
 
         script.onload = () => {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            if ((window as any).CozeWebSDK) {
+            if ((window as any).CozeWebSDK && chatContainerRef.current) {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 const cozeWebSDK = new (window as any).CozeWebSDK.WebChatClient({
                     config: {
@@ -24,27 +25,27 @@ export default function Home() {
                     },
 
                     ui: {
-                        // Base settings - QUAN TRỌNG cho full screen
                         base: {
-                            layout: 'mobile', // 'mobile' = FULL SCREEN
-                            lang: 'vn', // hoặc 'zh-CN'
+                            icon: '/favicon.ico',
+                            layout: 'pc',
+                            lang: 'en',
                             zIndex: 9999,
                         },
 
-                        // Ẩn floating button
                         asstBtn: {
-                            isNeed: false, // Ẩn floating ball
+                            isNeed: false,
                         },
 
                         header: {
-                            isShow: false,
+                            isShow: true,
                             isNeedClose: false,
                         },
 
                         chatBot: {
-                            title: 'AI Support Assistant', // Title
+                            title: 'Tìm Việc Việt Nam',
                             uploadable: true,
                             isNeedAddNewConversation: true,
+                            el: chatContainerRef.current, // Mount vào container
                             onShow: () => {
                                 console.log('Chat opened');
                             },
@@ -52,13 +53,14 @@ export default function Home() {
                                 console.log('Chat closed');
                             },
                         },
+
                         footer: {
                             isShow: false,
                         },
                     },
                 });
 
-                // AUTO OPEN - Tự động mở chat sau khi load
+                // Auto show
                 setTimeout(() => {
                     cozeWebSDK.showChatBot();
                 }, 100);
@@ -75,8 +77,15 @@ export default function Home() {
     }, []);
 
     return (
-        <div className="fixed inset-0 bg-white flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-blue-600"></div>
+        <div
+            className="min-h-screen flex items-center justify-center p-4"
+            style={{ backgroundColor: '#d1fa94' }}
+        >
+            <div
+                ref={chatContainerRef}
+                className="w-full max-w-md h-[80vh] rounded-2xl shadow-2xl overflow-hidden"
+            />
         </div>
+
     );
 }
