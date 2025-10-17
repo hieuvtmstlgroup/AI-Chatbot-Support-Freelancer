@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import {useEffect, useRef} from 'react';
 
 export default function Home() {
     const chatContainerRef = useRef<HTMLDivElement>(null);
@@ -51,19 +51,16 @@ export default function Home() {
                     cozeWebSDK.showChatBot();
                 }, 0);
             }
-        };
+        }
 
         document.body.appendChild(script);
     }, []);
 
     return (
-        <div
-            className="fixed inset-0 flex items-center justify-center md:p-4"
-            style={{ backgroundColor: '#d1fa94', overflow: 'hidden' }}
-        >
+        <div className="fixed inset-0 md:flex md:items-center md:justify-center">
             <div
                 ref={chatContainerRef}
-                className="w-full h-full md:max-w-md md:h-[80vh] md:rounded-2xl md:shadow-2xl bg-white"
+                className="h-full md:w-[460px] md:h-[95vh] md:rounded-2xl md:shadow-2xl bg-white"
             />
         </div>
     );

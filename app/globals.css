@@ -26,7 +26,7 @@ html {
 }
 
 body {
-  background: var(--background);
+  background: #ffffff;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   overflow: hidden;
@@ -34,5 +34,24 @@ body {
   padding: 0;
   width: 100vw;
   height: 100vh;
+  height: -webkit-fill-available;
   position: fixed;
+}
+
+/* Desktop background color */
+@media screen and (min-width: 768px) {
+  body {
+    background: #d1fa94;
+  }
+}
+
+/* Prevent iOS zoom on input focus */
+input, textarea, select {
+  font-size: 16px !important;
+}
+
+@media screen and (max-width: 768px) {
+  input, textarea, select {
+    font-size: 16px !important;
+  }
 }
