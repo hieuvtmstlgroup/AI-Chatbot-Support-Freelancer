@@ -25,7 +25,6 @@ export default function Home() {
                     ui: {
                         base: {
                             icon: '/favicon.ico',
-                            layout: 'pc',
                             lang: 'en',
                             zIndex: 9999,
                         },
@@ -33,7 +32,7 @@ export default function Home() {
                             isNeed: false,
                         },
                         header: {
-                            isShow: true,
+                            isShow: false,
                             isNeedClose: false,
                         },
                         chatBot: {
@@ -50,7 +49,7 @@ export default function Home() {
 
                 setTimeout(() => {
                     cozeWebSDK.showChatBot();
-                }, 100);
+                }, 0);
             }
         };
 
@@ -60,11 +59,11 @@ export default function Home() {
     return (
         <div
             className="fixed inset-0 flex items-center justify-center md:p-4"
-            style={{ backgroundColor: '#d1fa94' }}
+            style={{ backgroundColor: '#d1fa94', overflow: 'hidden' }}
         >
             <div
                 ref={chatContainerRef}
-                className="w-full h-full md:max-w-md md:h-[80vh] md:rounded-2xl md:shadow-2xl bg-white overflow-hidden"
+                className="w-full h-full md:max-w-md md:h-[80vh] md:rounded-2xl md:shadow-2xl bg-white"
             />
         </div>
     );
