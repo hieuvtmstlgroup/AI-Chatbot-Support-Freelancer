@@ -11,14 +11,14 @@ export default function Home() {
             if ((window as any).CozeWebSDK) {
                 const cozeWebSDK = new (window as any).CozeWebSDK.WebChatClient({
                     config: {
-                        botId: '7452426286724857857',
+                        botId: process.env.NEXT_PUBLIC_COZE_BOT_ID,
                         isIframe: false,
                     },
 
                     auth: {
                         type: 'token',
-                        token: 'pat_OEphGdm7HG0DFqLZrMdhBDo77wlPXM7pNFyljfMQfXWHxDAgwejvGYj8ZEnAJ5KV',
-                        onRefreshToken: () => 'pat_OEphGdm7HG0DFqLZrMdhBDo77wlPXM7pNFyljfMQfXWHxDAgwejvGYj8ZEnAJ5KV'
+                        token: process.env.NEXT_PUBLIC_COZE_TOKEN,
+                        onRefreshToken: () => process.env.NEXT_PUBLIC_COZE_TOKEN
                     },
 
                     ui: {
