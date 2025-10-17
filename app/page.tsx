@@ -8,7 +8,9 @@ export default function Home() {
         script.src = 'https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/oversea/index.js';
 
         script.onload = () => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             if ((window as any).CozeWebSDK) {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 const cozeWebSDK = new (window as any).CozeWebSDK.WebChatClient({
                     config: {
                         botId: process.env.NEXT_PUBLIC_COZE_BOT_ID,
